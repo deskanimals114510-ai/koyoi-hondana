@@ -1,0 +1,180 @@
+/* こよいの本棚 — 枕元の読書灯の下で、背表紙から1冊えらぶ */
+:root {
+  --night: #1b2036;
+  --night-2: #232946;
+  --night-3: #2c3354;
+  --paper: #f1e9d8;
+  --paper-sub: #bdb6cc;
+  --lamp: #e8b96a;
+  --lamp-deep: #c9953f;
+  --line: rgba(241, 233, 216, 0.14);
+  --board: #5a4632;
+
+  /* 棚ごとの背表紙の色 */
+  --sp-tsukare: #8f82b5;   /* 藤 */
+  --sp-sabishii: #c98d9c;  /* 薄紅 */
+  --sp-ochikomi: #6c9fa6;  /* 浅葱 */
+  --sp-kangae: #94a878;    /* 若草 */
+  --sp-naki: #d7bdb6;      /* 灰桜 */
+  --sp-ganbari: #c39b5c;   /* 金茶 */
+  --sp-nemure: #8e95ab;    /* 鈍色 */
+
+  --f-head: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --measure: 40rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
+/* 読書灯の光。background-attachment: fixed はiOSで効かずAndroidで重いので固定レイヤーで置く */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(60rem 40rem at 12% -10%, rgba(232, 185, 106, 0.13), transparent 60%);
+}
+
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+a { color: var(--lamp); text-underline-offset: 0.2em; }
+a:hover { color: var(--paper); }
+:focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 2px; }
+
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--lamp); color: var(--night); padding: 0.5rem 1rem; z-index: 10; }
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+.wrap { width: min(100% - 2rem, 62rem); margin-inline: auto; }
+.wrap-text { width: min(100% - 2rem, var(--measure)); margin-inline: auto; }
+
+/* ヘッダー */
+.site-header { padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.site-name { font-family: var(--f-head); font-size: 1.15rem; font-weight: 700; color: var(--paper); text-decoration: none; letter-spacing: 0.12em; }
+.site-name:hover { color: var(--lamp); }
+.site-header nav a { font-size: 0.85rem; color: var(--paper-sub); display: inline-block; padding: 0.6rem 0; }
+
+/* PR表記 */
+.pr-note { font-size: 0.8rem; color: var(--paper-sub); line-height: 1.7; margin: 1.25rem 0 0; }
+.pr-note b { display: inline-block; border: 1px solid var(--paper-sub); border-radius: 3px; padding: 0 0.35em; margin-right: 0.5em; font-weight: 500; line-height: 1.5; }
+
+/* トップ:見出しと本棚 */
+.hero { padding: 3rem 0 0; display: grid; gap: 2.5rem; align-items: end; }
+.hero h1 { font-family: var(--f-head); font-weight: 700; font-size: clamp(1.9rem, 5.5vw, 2.9rem); line-height: 1.45; letter-spacing: 0.08em; margin: 0 0 1rem; white-space: pre-line; }
+.hero-lead { color: var(--paper-sub); margin: 0; max-width: 26rem; }
+
+.shelf { position: relative; padding: 0 0.5rem; }
+.shelf-row { min-width: 0; display: flex; align-items: flex-end; justify-content: center; gap: clamp(0.2rem, 1vw, 0.35rem); list-style: none; margin: 0; padding: 0; }
+.shelf::after { content: ""; display: block; height: 0.8rem; margin: 0 -0.5rem; background: linear-gradient(var(--board), #3e3024); border-radius: 2px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35); }
+
+.spine {
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  width: clamp(2.2rem, 11vw, 3.6rem);
+  padding: 0.9rem 0 0.8rem;
+  border-radius: 3px 3px 0 0;
+  background: var(--c);
+  color: var(--night);
+  text-decoration: none;
+  box-shadow: inset -6px 0 0 rgba(0, 0, 0, 0.12), inset 2px 0 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease;
+}
+.spine:hover, .spine:focus-visible { transform: translateY(-0.6rem); color: var(--night); }
+.spine:focus-visible { outline-color: var(--paper); outline-offset: 4px; }
+.spine-title { writing-mode: vertical-rl; font-family: var(--f-head); font-weight: 700; font-size: clamp(0.92rem, 3.6vw, 1.1rem); letter-spacing: 0.14em; line-height: 1; }
+.spine-band { width: 60%; height: 3px; background: rgba(27, 32, 54, 0.55); border-radius: 2px; }
+.shelf-row li:nth-child(odd) .spine-band { width: 40%; }
+
+/* 棚(気分ごとのセクション) */
+.shelves { padding: 4rem 0 2rem; }
+.mood { padding: 2.5rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+.mood-head { display: flex; gap: 1rem; align-items: stretch; margin-bottom: 1.25rem; }
+.mood-head::before { content: ""; flex: none; width: 0.55rem; border-radius: 2px; background: var(--c); }
+.mood h2 { font-family: var(--f-head); font-size: clamp(1.35rem, 3.6vw, 1.7rem); line-height: 1.5; margin: 0; letter-spacing: 0.06em; }
+.mood-intro { color: var(--paper-sub); margin: 0.25rem 0 0; }
+
+.book-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem 2.5rem; }
+.book-row { padding: 1rem 0; border-bottom: 1px dashed var(--line); }
+.book-row h3 { font-family: var(--f-head); font-size: 1.12rem; margin: 0; line-height: 1.6; }
+.book-row p { margin: 0.3rem 0 0.5rem; }
+.book-row .by { font-size: 0.82rem; color: var(--paper-sub); margin: 0; }
+.book-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; font-size: 0.92rem; }
+
+/* サイト内のページへのリンクと、Amazonへのリンクを見た目で分ける */
+.link-page { display: inline-block; padding: 0.55rem 0; font-weight: 700; }
+.link-amazon {
+  display: inline-block; padding: 0.45rem 0.9rem; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--paper-sub); text-decoration: none;
+}
+.link-amazon:hover { color: var(--paper); border-color: var(--paper-sub); }
+
+/* 本のページ */
+.crumbs { font-size: 0.8rem; color: var(--paper-sub); margin: 1.5rem 0 0; }
+.crumbs a { color: var(--paper-sub); }
+.page-head { padding: 2rem 0 1rem; }
+.page-head h1 { font-family: var(--f-head); font-size: clamp(1.6rem, 4.8vw, 2.3rem); line-height: 1.5; letter-spacing: 0.05em; margin: 0 0 1rem; }
+.updated { font-size: 0.8rem; color: var(--paper-sub); margin: 0; }
+
+.anchor { margin: 1.5rem 0 1rem; padding: 1.5rem; background: var(--night-2); border-radius: 6px; border: 1px solid var(--line); }
+.anchor h2 { font-family: var(--f-head); font-size: 1.2rem; margin: 0 0 0.5rem; }
+.anchor p { margin: 0.5rem 0; }
+
+.pick { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; padding: 2.25rem 0; border-bottom: 1px solid var(--line); }
+.pick-spine {
+  width: 3rem; min-height: 11rem; padding: 0.9rem 0; border-radius: 3px;
+  background: var(--c); color: var(--night);
+  display: flex; justify-content: center;
+  box-shadow: inset -6px 0 0 rgba(0, 0, 0, 0.12), inset 2px 0 0 rgba(255, 255, 255, 0.18);
+}
+.pick-spine span { writing-mode: vertical-rl; font-family: var(--f-head); font-weight: 700; font-size: 1rem; letter-spacing: 0.12em; line-height: 1; }
+.pick h2 { font-family: var(--f-head); font-size: 1.3rem; line-height: 1.5; margin: 0; }
+.pick .by { font-size: 0.85rem; color: var(--paper-sub); margin: 0.15rem 0 0; }
+.pick .note { font-size: 0.92rem; color: var(--paper-sub); padding: 0.6rem 0.8rem; border: 1px dashed var(--line); border-radius: 4px; }
+.pick-more { margin: 0.9rem 0 0; }
+.pick .night { margin: 0.9rem 0 0.4rem; padding-left: 0.9rem; border-left: 2px solid var(--lamp); font-family: var(--f-head); font-size: 1.02rem; }
+.pick p { margin: 0.6rem 0; }
+
+.btn-amazon {
+  display: inline-block; margin-top: 0.6rem; padding: 0.6rem 1.2rem; border-radius: 999px;
+  background: var(--lamp); color: var(--night); font-weight: 700; font-size: 0.92rem; text-decoration: none;
+}
+.btn-amazon:hover { background: var(--paper); color: var(--night); }
+
+.ku { margin: 2.5rem 0; padding: 1.5rem; border: 1px solid var(--lamp-deep); border-radius: 6px; }
+.ku h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.5rem; }
+.ku p { margin: 0.4rem 0; font-size: 0.95rem; }
+
+.more { padding: 2rem 0 1rem; }
+.more h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.75rem; }
+.more ul { margin: 0; padding-left: 1.2rem; }
+
+/* 文章ページ(プライバシーなど) */
+.doc h1 { font-family: var(--f-head); font-size: 1.7rem; margin: 2rem 0 1rem; }
+.doc h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 2rem 0 0.5rem; }
+
+/* フッター */
+.site-footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--paper-sub); line-height: 1.8; }
+.site-footer p { margin: 0.35rem 0; }
+.site-footer a { color: var(--paper-sub); display: inline-block; padding: 0.4rem 0; }
+
+.help-line { margin: 1.5rem 0 0; padding: 0.9rem 1rem; font-size: 0.92rem; color: var(--paper-sub); border-left: 2px solid var(--paper-sub); }
+
+@media (min-width: 48rem) {
+  .hero { grid-template-columns: 1fr 1.1fr; padding-top: 4.5rem; }
+  .book-list { grid-template-columns: 1fr 1fr; }
+  .pick { grid-template-columns: 3.4rem 1fr; gap: 1.75rem; }
+  .pick-spine { width: 3.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spine { transition: none; }
+  .spine:hover, .spine:focus-visible { transform: none; }
+}
