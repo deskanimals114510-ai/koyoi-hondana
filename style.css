@@ -22,7 +22,7 @@
   --sp-nemure: #7f8aa8;    /* 鈍色 */
 
   --f-head: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --f-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;  /* 10/22 Zen Kaku Gothic Newは仮名の字間が広く読みにくかったので変更 */
   --measure: 40rem;
 }
 
