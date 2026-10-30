@@ -184,6 +184,12 @@ a:hover { color: var(--paper); }
 .ku h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.5rem; }
 .ku p { margin: 0.4rem 0; font-size: 0.95rem; }
 
+/* 作品ページの「ほかにも、似てる本」: トップの本の行と同じ形。色は各本の棚に関係なく読書灯の色 */
+.also { padding: 2rem 0 0.5rem; --c: var(--lamp); }
+.also h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.25rem; }
+.also .book-list { grid-template-columns: 1fr; }
+.also .book-row h3 { font-size: 1.05rem; }
+.pick + .help-line { margin-top: 1.25rem; }
 .more { padding: 2rem 0 1rem; }
 .more h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.75rem; }
 .more ul { margin: 0; padding-left: 1.2rem; }
