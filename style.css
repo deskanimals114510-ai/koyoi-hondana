@@ -153,6 +153,8 @@ a:hover { color: var(--paper); }
 .anchor { margin: 1.5rem 0 1rem; padding: 1.25rem; background: var(--card); border-radius: 6px; border: 1px solid var(--line); }
 .anchor h2 { font-family: var(--f-head); font-size: 1.2rem; margin: 0 0 0.5rem; }
 .anchor p { margin: 0.5rem 0; }
+.anchor .media { margin-top: 0.9rem; padding-top: 0.7rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--paper-sub); }
+.anchor .media b { color: var(--text); margin-right: 0.4em; }
 
 .pick { display: grid; grid-template-columns: 1fr; gap: 0.9rem; padding: 2.25rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 1rem; }
 .pick-spine {
