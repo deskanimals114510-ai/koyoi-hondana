@@ -182,9 +182,10 @@ a:hover { color: var(--paper); }
 }
 .btn-line:hover { background: var(--lamp); color: var(--night); }
 
-.ku { margin: 2.5rem 0; padding: 1.5rem; border: 1px solid var(--lamp-deep); border-radius: 6px; }
+.ku { margin: 2.5rem 0 1.5rem; padding: 1.5rem; border: 1px solid var(--lamp-deep); border-radius: 6px; }
 .ku h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.5rem; }
 .ku p { margin: 0.4rem 0; font-size: 0.95rem; }
+.ku .btn-amazon { background: transparent; color: var(--text); border: 1px solid var(--lamp); }
 
 /* 作品ページの「ほかにも、似てる本」: トップの本の行と同じ形。色は各本の棚に関係なく読書灯の色 */
 .also { padding: 2rem 0 0.5rem; --c: var(--lamp); }
