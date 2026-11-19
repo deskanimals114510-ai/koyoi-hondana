@@ -234,3 +234,4 @@ a:hover { color: var(--paper); }
   .spine { transition: none; }
   .spine:hover, .spine:focus-visible { transform: none; }
 }
+.also .also-why { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--paper-sub); }
