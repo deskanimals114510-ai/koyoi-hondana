@@ -199,6 +199,14 @@ a:hover { color: var(--paper); }
 .more h2 { font-family: var(--f-head); font-size: 1.15rem; margin: 0 0 0.75rem; }
 .more ul { margin: 0; padding-left: 1.2rem; }
 
+/* 作品ページ: 4冊の直後の「サンプルを読む」の案内(11/22) */
+.sample-line { margin: 2rem 0 0; padding: 0.9rem 1rem; border-left: 3px solid var(--lamp); background: var(--card); border-radius: 0 4px 4px 0; }
+
+/* トップのイラスト(MJ、11/22。元画像は素材/MJ/) */
+.hero-art { margin: 0; }
+.hero-art img { display: block; width: 100%; height: auto; border-radius: 6px; }
+@media (max-width: 47.99rem) { .hero-art img { max-height: 12rem; object-fit: cover; object-position: 60% 70%; } }
+
 /* トップ「好きな漫画から探す」(11/22〜の主な入口)と気分の棚の入口 */
 .works, .mood-entry { padding: 2rem 0 0.5rem; }
 .works h2, .mood-entry h2 { font-family: var(--f-head); font-size: 1.3rem; margin: 0 0 0.25rem; }
@@ -238,7 +246,7 @@ a:hover { color: var(--paper); }
 .fab:hover { color: var(--lamp); }
 
 @media (min-width: 48rem) {
-  .hero { padding-top: 4.5rem; }
+  .hero { padding-top: 4.5rem; grid-template-columns: 1fr 1fr; align-items: center; }
   .mood-entry .shelf { max-width: 40rem; }
   .works-list { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
   .book-list { grid-template-columns: 1fr 1fr; }
